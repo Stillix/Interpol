@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notices</title>
+</head>
+<body>
+<div th:switch="${noticeList}">
+    <h2 th:case="null">No notices found!</h2>
+    <div th:case="*">
+        <h2>Заявки</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Заголовок</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Возраст</th>
+                <th>Статус</th>
+                <th>Описание</th>
+                <th>Срок выполнения</th>
+                <th>Вознаграждение</th>
+                <th>Дата-время публикации</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="notice : ${noticeList}">
+                <td th:text="${notice.noticeId}"></td>
+                <td th:text="${notice.title}"></td>
+                <td th:text="${notice.personName}"></td>
+                <td th:text="${notice.personSurname}"></td>
+                <td th:text="${notice.personAge}"></td>
+                <td th:text="${notice.description}"></td>
+                <td th:text="${notice.executionTime}"></td>
+                <td th:text="${notice.reward}"></td>
+                <td th:text="${notice.publicationDateTime}"></td>
+                <td><a th:href="@{notice-update/{id}(id=${notice.id})}">Edit</a></td>
+                <td><a th:href="@{notice-delete/{id}(id=${notice.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/notice-create">Create notice</a></p>
+</div>
+</body>
+</html>
