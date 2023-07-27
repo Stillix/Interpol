@@ -9,15 +9,13 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "notices")
 public class Notice {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_gen")
-    @SequenceGenerator(name = "seq_gen", sequenceName = "notice_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_notice", updatable = false, nullable = false)
     private Long noticeId;
     @Column(name = "title", nullable = false)
     private String title;
-    @Column(name = "id_user", nullable = false)
+    @Column(name = "id_user")
     private Long userId;
     @Column(name = "name_person", nullable = false)
     private String personName;
@@ -33,9 +31,9 @@ public class Notice {
     private int executionTime;
     @Column(name = "reward", nullable = false)
     private int reward;
-    @Column(name = "id_status", nullable = false)
+    @Column(name = "id_status")
     private Long statusId;
-    @Column(name = "publication_date", nullable = false)
+    @Column(name = "publication_date")
     private Timestamp publicationDateTime;
 
 

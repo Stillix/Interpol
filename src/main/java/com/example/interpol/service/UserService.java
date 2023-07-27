@@ -1,38 +1,20 @@
 package com.example.interpol.service;
 
+import com.example.interpol.exception.ServiceException;
 import com.example.interpol.model.User;
-import com.example.interpol.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
-@Service
-public class UserService {
 
-    private final UserRepository userRepository;
+public interface UserService {
+     User createUser(User user);
 
-    @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+     void deleteUser(Long userId);
 
-    public User createUser(User user) {
-        return userRepository.save(user);
-    }
+     List<User> findAll();
 
-    public void deleteUser(Long userId) {
-        userRepository.deleteById(userId);
-    }
-
-    public List<User> findAll() {
-        return userRepository.findAll();
-    }
-
-    public Optional<User> findById(Long id) {
-        return userRepository.findById(id);
-    }
-
+     User findById(Long id) throws ServiceException;
 
 }
+
+
