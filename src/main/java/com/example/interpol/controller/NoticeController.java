@@ -2,7 +2,6 @@ package com.example.interpol.controller;
 
 import com.example.interpol.exception.ServiceException;
 import com.example.interpol.model.Notice;
-import com.example.interpol.model.User;
 import com.example.interpol.service.impl.NoticeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -38,27 +38,33 @@ public class NoticeController {
     }
 
     @PostMapping("/notices/save")
-    public String createNotice(Notice notice,RedirectAttributes redirectAttributes) {
+    public String createNotice(Notice notice, RedirectAttributes redirectAttributes) {
+        long now = System.currentTimeMillis();
+        Timestamp publicationDateTime = new Timestamp(now);
+        notice.setPublicationDateTime(publicationDateTime);
         noticeService.createNotice(notice);
         redirectAttributes.addFlashAttribute("message", "The notice has been create successfully");
         return "redirect:/notices";
     }
+
     @GetMapping("/notices/edit/{id}")
-    public String showEditForm(@PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes) {
+    public String showEditForm(@PathVariable("id") Long id, Model model) {
         try {
             Notice notice = noticeService.findById(id);
             model.addAttribute("notice", notice);
-            model.addAttribute("noticeid", id);
             return "edit_notice_form";
         } catch (ServiceException e) {
-            redirectAttributes.addFlashAttribute("message", "The notice has been saved successfully");
             return "redirect:/notices";
         }
     }
 
     @PostMapping("/notices/update")
-    public String updateNotice(Notice notice) {
+    public String updateNotice(Notice notice, RedirectAttributes redirectAttributes) {
+        long now = System.currentTimeMillis();
+        Timestamp publicationDateTime = new Timestamp(now);
+        notice.setPublicationDateTime(publicationDateTime);
         noticeService.createNotice(notice);
+        redirectAttributes.addFlashAttribute("message", "The notice has been saved successfully");
         return "redirect:/notices";
     }
 

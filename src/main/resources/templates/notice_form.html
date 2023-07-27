@@ -3,34 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Create notice</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<h1>Создание заявки</h1>
-<form action="#" th:action="@{/notices/save}" th:object="${notice}" method="post">
-            <label>Заголовок:</label>
-            <input type="text" th:field="*{title}" maxlength="45" placeholder="Введите заголовок" required><br>
-            <input type="hidden" th:field="*{userId}" th:value="45"><br>
-            <label>Имя:</label>
-            <input type="text" th:field="*{personName}" placeholder="Введите имя" required><br>
-            <label>Фамилия:</label>
-            <input type="text" th:field="*{personSurname}" placeholder="Введите фамилию" required><br>
-            <label>Возраст:</label>
-            <input type="text" th:field="*{personAge}" maxlength="13" placeholder="Введите возраст" required><br>
-            <label>Описание:</label>
-            <textarea th:field="*{description}" placeholder="Введите описание" required></textarea><br>
-            <label>Время выполнения:</label>
-            <input type="text" th:field="*{executionTime}" placeholder="Введите время выполнения заявки" required><br>
-            <label>Вознаграждение:</label>
-            <input type="text" th:field="*{reward}" placeholder="Введите вознаграждение" required><br>
-            <label>Статус:</label>
-            <select th:field="*{personStatus}" required>
+<div class="container">
+    <h1 class="my-4">Create Notice</h1>
+    <form action="#" th:action="@{/notices/save}" th:object="${notice}" method="post">
+        <div class="form-group">
+            <label for="title">Заголовок:</label>
+            <input type="text" th:field="*{title}" class="form-control" id="title" maxlength="45" placeholder="Введите заголовок" required>
+        </div>
+        <input type="hidden" th:value="45" th:name="userId" th:id="userdId">
+        <div class="form-group">
+            <label for="personName">Имя:</label>
+            <input type="text" th:field="*{personName}" class="form-control" id="personName" placeholder="Введите имя" required>
+        </div>
+        <div class="form-group">
+            <label for="personSurname">Фамилия:</label>
+            <input type="text" th:field="*{personSurname}" class="form-control" id="personSurname" placeholder="Введите фамилию" required>
+        </div>
+        <div class="form-group">
+            <label for="personAge">Возраст:</label>
+            <input type="text" th:field="*{personAge}" class="form-control" id="personAge" maxlength="13" placeholder="Введите возраст" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Описание:</label>
+            <textarea th:field="*{description}" class="form-control" id="description" placeholder="Введите описание" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="executionTime">Время выполнения:</label>
+            <input type="text" th:field="*{executionTime}" class="form-control" id="executionTime" placeholder="Введите время выполнения заявки" required>
+        </div>
+        <div class="form-group">
+            <label for="reward">Вознаграждение:</label>
+            <input type="text" th:field="*{reward}" class="form-control" id="reward" placeholder="Введите вознаграждение" required>
+        </div>
+        <div class="form-group">
+            <label for="personStatus">Статус:</label>
+            <select th:field="*{personStatus}" class="form-control" id="personStatus" required>
                 <option value="missing">missing</option>
                 <option value="criminal">criminal</option>
-            </select><br>
-            <input type="hidden" th:field="*{statusId}" th:value="1"><br>
-    <div class="text-center">
-        <button type="submit" class="btn btn-primary">Create</button>
-    </div>
-</form>
+            </select>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>

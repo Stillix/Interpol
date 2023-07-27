@@ -18,7 +18,6 @@ import java.util.List;
 public class UserController {
 
     private UserServiceImpl userService;
-
     @Autowired
     public UserController(UserServiceImpl userService) {
         this.userService = userService;
@@ -37,10 +36,43 @@ public class UserController {
         return "user_form";
     }
 
+    @GetMapping("/registration")
+    public String showRegistrationPage(Model model) {
+        model.addAttribute("user", new User());
+        return "registration";
+    }
+
+    @PostMapping("/registration")
+    public String registration(User user, RedirectAttributes redirectAttrs, Model model) {
+        try {
+            userService.createUser(user);
+        } catch (ServiceException e) {
+            redirectAttrs.addFlashAttribute("errorMessage", "Error message");
+            return "redirect:/registration";
+        }
+        return "redirect:/authorization";
+    }
+
+    @GetMapping("/authorization")
+    public String showAuthorizationForm(Model model) {
+        model.addAttribute("user", new User());
+        return "authorization";
+    }
+
+    @PostMapping("/authorize")
+    public String authorizationUser(User user, RedirectAttributes redirectAttributes) {
+        //todo
+        return "redirect:/users";
+    }
+
     @PostMapping("/users/save")
     public String createUser(User user, RedirectAttributes redirectAttributes) {
-        userService.createUser(user);
-        redirectAttributes.addFlashAttribute("message", "The user has been create successfully");
+        try {
+            userService.createUser(user);
+            redirectAttributes.addFlashAttribute("message", "The user has been create successfully");
+        } catch (ServiceException e) {
+            throw new RuntimeException(e);
+        }
         return "redirect:/users";
     }
 
@@ -49,17 +81,20 @@ public class UserController {
         try {
             User user = userService.findById(id);
             model.addAttribute("user", user);
-            model.addAttribute("userid", id);
             return "edit_user_form";
         } catch (ServiceException e) {
-            redirectAttributes.addFlashAttribute("message", "The user has been saved successfully");
             return "redirect:/users";
         }
     }
 
     @PostMapping("/users/update")
-    public String updateUser(User user) {
-        userService.createUser(user);
+    public String updateUser(User user, RedirectAttributes redirectAttributes) {
+        try {
+            userService.createUser(user);
+        } catch (ServiceException e) {
+            throw new RuntimeException(e);
+        }
+        redirectAttributes.addFlashAttribute("message", "The user has been saved successfully");
         return "redirect:/users";
     }
 

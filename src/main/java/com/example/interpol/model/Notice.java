@@ -31,9 +31,7 @@ public class Notice {
     private int executionTime;
     @Column(name = "reward", nullable = false)
     private int reward;
-    @Column(name = "id_status")
-    private Long statusId;
-    @Column(name = "publication_date")
+    @Column(name = "create_date")
     private Timestamp publicationDateTime;
 
 

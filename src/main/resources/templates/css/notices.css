@@ -1,0 +1,40 @@
+body {
+    padding: 20px;
+    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #007BFF;
+    margin-bottom: 30px;
+}
+
+.alert {
+    margin-top: 20px;
+}
+
+.table {
+    margin-top: 30px;
+}
+
+.table thead th {
+    background-color: #e9ecef;
+}
+
+.table td, .table th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.btn {
+    font-size: 14px;
+    padding: 6px 12px;
+}
+
+.btn-edit {
+    color: #007BFF;
+}
+
+.btn-delete {
+    color: #FF0000;
+}

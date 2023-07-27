@@ -7,13 +7,13 @@ import java.util.List;
 
 
 public interface UserService {
-     User createUser(User user);
+     User createUser(User user) throws ServiceException;
 
      void deleteUser(Long userId);
 
      List<User> findAll();
 
-     User findById(Long id) throws ServiceException;
+    User findById(Long id) throws ServiceException;
 
 }
 

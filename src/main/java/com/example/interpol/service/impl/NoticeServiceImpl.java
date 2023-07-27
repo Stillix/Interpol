@@ -2,7 +2,6 @@ package com.example.interpol.service.impl;
 
 import com.example.interpol.exception.ServiceException;
 import com.example.interpol.model.Notice;
-import com.example.interpol.model.User;
 import com.example.interpol.repository.NoticeRepository;
 import com.example.interpol.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import java.util.Optional;
 @Service
 public class NoticeServiceImpl implements NoticeService {
     private NoticeRepository noticeRepository;
-
     @Autowired
     public NoticeServiceImpl(NoticeRepository noticeRepository) {
         this.noticeRepository = noticeRepository;

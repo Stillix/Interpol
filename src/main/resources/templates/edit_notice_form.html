@@ -2,41 +2,54 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit notice</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body>
-<h1 class="text text-center" style="color: darkgoldenrod">Edit notice</h1>
-
-<form action="#" th:action="@{/notices/update}" th:object="${notice}" method="post">
-    <input type="hidden" th:field="*{noticeId}"><br>
-    <div>
-        <label>Заголовок:</label>
-        <input type="text" th:field="*{title}" maxlength="45" placeholder="Введите заголовок" required><br>
-        <input type="hidden" th:field="*{userId}"><br>
-        <label>Имя:</label>
-        <input type="text" th:field="*{personName}" placeholder="Введите имя" required><br>
-        <label>Фамилия:</label>
-        <input type="text" th:field="*{personSurname}" placeholder="Введите фамилию" required><br>
-        <label>Возраст:</label>
-        <input type="text" th:field="*{personAge}" maxlength="13" placeholder="Введите возраст" required><br>
-        <label>Описание:</label>
-        <textarea th:field="*{description}" placeholder="Введите описание" required></textarea><br>
-        <label>Время выполнения:</label>
-        <input type="text" th:field="*{executionTime}" placeholder="Введите время выполнения заявки" required><br>
-        <label>Вознаграждение:</label>
-        <input type="text" th:field="*{reward}" placeholder="Введите вознаграждение" required><br>
-        <label>Статус:</label>
-        <select th:field="*{personStatus}" required>
-            <option value="missing">missing</option>
-            <option value="criminal">criminal</option>
-        </select><br>
-        <input type="hidden" name="id_status" value="1" required><br>
-        <input th:field="*{publicationDateTime}" type="datetime-local"/>
-    </div>
-    <div class="text-center">
-        <button type="submit" class="btn btn-primary">Save</button>
-        <button type="submit" class="btn btn-secondary">Cancel</button>
-    </div>
-</form>
+<body style="background-color: #f8f9fa;">
+<div class="container">
+    <h1 class="text-center my-5" style="color: #007bff;">Edit Notice</h1>
+    <form action="#" th:action="@{/notices/update}" th:object="${notice}" method="post">
+        <input type="hidden" th:field="*{noticeId}">
+        <div class="form-group">
+            <label for="title" style="color: #007bff;">Заголовок:</label>
+            <input type="text" th:field="*{title}" class="form-control" id="title" maxlength="45" placeholder="Введите заголовок" required>
+        </div>
+        <input type="hidden" th:value="45" th:name="userId" th:id="userdId">
+        <div class="form-group">
+            <label for="personName" style="color: #007bff;">Имя:</label>
+            <input type="text" th:field="*{personName}" class="form-control" id="personName" placeholder="Введите имя" required>
+        </div>
+        <div class="form-group">
+            <label for="personSurname" style="color: #007bff;">Фамилия:</label>
+            <input type="text" th:field="*{personSurname}" class="form-control" id="personSurname" placeholder="Введите фамилию" required>
+        </div>
+        <div class="form-group">
+            <label for="personAge" style="color: #007bff;">Возраст:</label>
+            <input type="text" th:field="*{personAge}" class="form-control" id="personAge" maxlength="13" placeholder="Введите возраст" required>
+        </div>
+        <div class="form-group">
+            <label for="description" style="color: #007bff;">Описание:</label>
+            <textarea th:field="*{description}" class="form-control" id="description" placeholder="Введите описание" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="executionTime" style="color: #007bff;">Время выполнения:</label>
+            <input type="text" th:field="*{executionTime}" class="form-control" id="executionTime" placeholder="Введите время выполнения заявки" required>
+        </div>
+        <div class="form-group">
+            <label for="reward" style="color: #007bff;">Вознаграждение:</label>
+            <input type="text" th:field="*{reward}" class="form-control" id="reward" placeholder="Введите вознаграждение" required>
+        </div>
+        <div class="form-group">
+            <label for="personStatus" style="color: #007bff;">Статус:</label>
+            <select th:field="*{personStatus}" class="form-control" id="personStatus" required>
+                <option value="missing">missing</option>
+                <option value="criminal">criminal</option>
+            </select>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary" style="background-color: #007bff; border-color: #007bff;">Save</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>

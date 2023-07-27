@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(User user) {
+    public User createUser(User user) throws ServiceException{
         return userRepository.save(user);
     }
 
@@ -34,7 +34,6 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long userId) {
         userRepository.deleteById(userId);
     }
-
 
     @Override
     public User findById(Long id) throws ServiceException {
