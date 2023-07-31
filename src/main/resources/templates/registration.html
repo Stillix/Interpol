@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Registration</h1>
-<form action="#" th:action="@{/registration}" th:object="${user}" method="post">
+<form action="#" th:action="@{/register}" th:object="${user}" method="post">
     <div class="border border-secondary rounded">
         <div class="form-group row">
             <label class="col-sm-4 col-form-label">Логин:</label>
@@ -21,7 +21,7 @@
             <input class="form-control" th:field="*{phone}" type="text" required><br>
             <label class="col-sm-4 col-form-label">Email:</label>
             <input class="form-control" th:field="*{email}" type="email" required><br>
-            <input type="hidden" name="role" value="client" required><br>
+            <input type="hidden" name="role" value="CLIENT" required><br>
         </div>
     </div>
     <div class="text-center">

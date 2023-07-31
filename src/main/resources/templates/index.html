@@ -5,12 +5,15 @@
     <title>Главная страница</title>
 </head>
 <body>
+<div th:if="${message}" class="alert alert-success text-center">
+    [[${message}]]
+</div>
 <div>
     <form action="/authorization">
         <button type="submit">Перейти к авторизации</button>
     </form>
     <br><br>
-    <form action="/users/new">
+    <form action="/registration">
         <button type="submit">Перейти к регистрации</button>
     </form>
     <br><br>

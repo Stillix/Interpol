@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Client page</title>
+</head>
+<body>
+<div th:if="${message}" class="alert alert-success text-center">
+  [[${message}]]
+</div>
+<div>
+
+  <br><br>
+  <form action="/notices">
+    <button type="submit">View notices</button>
+  </form>
+  <form action="/notices/new">
+    <button type="submit">Create notice</button>
+  </form>
+  <form action="/notices">
+    <button type="submit">All notices</button>
+  </form>
+  <form action="/client/notices">
+    <button type="submit">Your notices</button>
+  </form>
+  <form action="/">
+    <button type="submit">Logout</button>
+  </form>
+</div>
+</body>
+</html>

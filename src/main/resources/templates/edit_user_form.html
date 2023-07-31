@@ -2,28 +2,32 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit User (ID: ${userid}</title>
+    <title>Edit</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<h1>Register</h1>
+<h1>Edit User</h1>
 <form action="#" th:action="@{/users/update}" th:object="${user}" method="post">
     <input type="hidden" th:field="*{id}"><br>
     <div class="border border-secondary rounded">
         <div class="form-group row">
-            <input  th:field="*{login}" type="hidden"><br>
-            <input  th:field="*{password}" type="hidden"><br>
-            <label class="col-sm-4 col-form-label" >Имя:</label>
-            <input class="form-control" th:field="*{name}" type="text"  required><br>
+            <input th:field="*{login}" type="hidden"><br>
+            <input th:field="*{password}" type="hidden"><br>
+            <label class="col-sm-4 col-form-label">Имя:</label>
+            <input class="form-control" th:field="*{name}" type="text" required><br>
             <label class="col-sm-4 col-form-label">Фамилия:</label>
             <input class="form-control" th:field="*{surname}" type="text" required><br>
             <label class="col-sm-4 col-form-label">Телефон:</label>
-            <input class="form-control" th:field="*{phone}" type="text"  required><br>
+            <input class="form-control" th:field="*{phone}" type="text" required><br>
             <label class="col-sm-4 col-form-label">Email:</label>
             <input class="form-control" th:field="*{email}" type="email" required><br>
-            <input type="hidden" name="role" value="client" required><br>
+            <select id="status" th:field="*{role}" required>
+                <option value="ADMIN" th:selected="${user.role == 'ADMIN'}">admin</option>
+                <option value="CLIENT" th:selected="${user.role  == 'CLIENT'}">client</option>
+            </select><br>
         </div>
+
     </div>
     <div class="text-center">
         <button type="submit" class="btn btn-primary">Save</button>

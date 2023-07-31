@@ -2,7 +2,9 @@ package com.example.interpol.controller;
 
 import com.example.interpol.exception.ServiceException;
 import com.example.interpol.model.Notice;
+import com.example.interpol.model.User;
 import com.example.interpol.service.impl.NoticeServiceImpl;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,7 @@ import java.util.List;
 
 @Controller
 public class NoticeController {
+    public static final String MESSAGE = "message";
     private NoticeServiceImpl noticeService;
 
     @Autowired
@@ -31,6 +34,14 @@ public class NoticeController {
         return "notices";
     }
 
+    @GetMapping("/client/notices")
+    public String showClientNoticeList(Model model, HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("user");
+        List<Notice> noticeList = noticeService.findNoticesByUserId(user.getId());
+        model.addAttribute("noticeList", noticeList);
+        return "notices";
+    }
+
     @GetMapping("/notices/new")
     public String showNoticeForm(Model model) {
         model.addAttribute("notice", new Notice());
@@ -38,12 +49,18 @@ public class NoticeController {
     }
 
     @PostMapping("/notices/save")
-    public String createNotice(Notice notice, RedirectAttributes redirectAttributes) {
+    public String createNotice(Notice notice, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+        User user = (User) request.getSession().getAttribute("user");
         long now = System.currentTimeMillis();
         Timestamp publicationDateTime = new Timestamp(now);
         notice.setPublicationDateTime(publicationDateTime);
-        noticeService.createNotice(notice);
-        redirectAttributes.addFlashAttribute("message", "The notice has been create successfully");
+        notice.setUserId(user.getId());
+        try {
+            noticeService.createNotice(notice);
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
+        redirectAttributes.addFlashAttribute(MESSAGE, "The notice has been create successfully");
         return "redirect:/notices";
     }
 
@@ -63,15 +80,19 @@ public class NoticeController {
         long now = System.currentTimeMillis();
         Timestamp publicationDateTime = new Timestamp(now);
         notice.setPublicationDateTime(publicationDateTime);
-        noticeService.createNotice(notice);
-        redirectAttributes.addFlashAttribute("message", "The notice has been saved successfully");
+        try {
+            noticeService.createNotice(notice);
+        } catch (ServiceException e) {
+            throw new RuntimeException(e);
+        }
+        redirectAttributes.addFlashAttribute(MESSAGE, "The notice has been saved successfully");
         return "redirect:/notices";
     }
 
     @GetMapping("notices/delete/{id}")
     public String deleteNotice(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
         noticeService.deleteNotice(id);
-        redirectAttributes.addFlashAttribute("message", "The notice (id=" + id + ") has been successfully deleted");
+        redirectAttributes.addFlashAttribute(MESSAGE, "The notice (id=" + id + ") has been successfully deleted");
         return "redirect:/notices";
     }
 }

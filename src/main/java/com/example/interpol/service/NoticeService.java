@@ -4,12 +4,11 @@ import com.example.interpol.exception.ServiceException;
 import com.example.interpol.model.Notice;
 
 import java.util.List;
-import java.util.Optional;
 
 
 public interface NoticeService {
 
-    public Notice createNotice(Notice notice);
+    public Notice createNotice(Notice notice) throws ServiceException;
 
     public void deleteNotice(Long noticeId);
 
@@ -17,6 +16,5 @@ public interface NoticeService {
 
     public Notice findById(Long noticeId) throws ServiceException;
 
-
-    public Optional<Notice> findNoticeByUserId(Long userId);
+    List<Notice> findNoticesByUserId(Long userId);
 }

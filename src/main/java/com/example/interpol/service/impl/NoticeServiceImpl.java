@@ -19,7 +19,7 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public Notice createNotice(Notice notice) {
+    public Notice createNotice(Notice notice) throws ServiceException{
         return noticeRepository.save(notice);
     }
 
@@ -39,10 +39,10 @@ public class NoticeServiceImpl implements NoticeService {
         if (notice.isPresent()) {
             return notice.get();
         }
-        throw new ServiceException("Failed find notice by id");
+        throw new ServiceException("Failed find notice by notice id");
     }
     @Override
-    public Optional<Notice> findNoticeByUserId(Long userId) {
-        return noticeRepository.findById(userId);
+    public List<Notice> findNoticesByUserId(Long userId) {
+        return noticeRepository.findAllByUserId(userId);
     }
 }
