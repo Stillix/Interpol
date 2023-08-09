@@ -3,23 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Главная страница</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* CSS-стили для установки светло-синего фона */
+        body {
+            background-color: #e6f0ff; /* Светло-синий цвет фона */
+        }
+
+
+        .container {
+            padding-top: 50px; /* Отступ сверху */
+            color: #000; /* Цвет текста */
+        }
+    </style>
 </head>
 <body>
-<div th:if="${message}" class="alert alert-success text-center">
-    [[${message}]]
+<div th:if="${message}" class="alert alert-info mt-3 container">
+    <p th:text="${message}"></p>
 </div>
-<div>
-    <form action="/authorization">
-        <button type="submit">Перейти к авторизации</button>
-    </form>
-    <br><br>
-    <form action="/registration">
-        <button type="submit">Перейти к регистрации</button>
-    </form>
-    <br><br>
-    <form action="/notices">
-        <button type="submit">Посмотреть заявки</button>
-    </form>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <form action="/authorization" class="mb-3">
+                <button type="submit" class="btn btn-primary btn-block">Перейти к авторизации</button>
+            </form>
+            <form action="/registration" class="mb-3">
+                <button type="submit" class="btn btn-primary btn-block">Перейти к регистрации</button>
+            </form>
+            <form action="/view/notices">
+                <button type="submit" class="btn btn-primary btn-block">Посмотреть заявки</button>
+            </form>
+        </div>
+    </div>
 </div>
+
 </body>
 </html>

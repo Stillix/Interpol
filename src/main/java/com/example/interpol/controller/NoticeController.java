@@ -33,13 +33,19 @@ public class NoticeController {
         model.addAttribute("noticeList", noticeList);
         return "notices";
     }
+    @GetMapping("/view/notices")
+    public String showAllNoticeList(Model model) {
+        List<Notice> noticeList = noticeService.findAll();
+        model.addAttribute("noticeList", noticeList);
+        return "all_notices";
+    }
 
     @GetMapping("/client/notices")
     public String showClientNoticeList(Model model, HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
         List<Notice> noticeList = noticeService.findNoticesByUserId(user.getId());
         model.addAttribute("noticeList", noticeList);
-        return "notices";
+        return "client_notices";
     }
 
     @GetMapping("/notices/new")
@@ -61,7 +67,7 @@ public class NoticeController {
             e.printStackTrace();
         }
         redirectAttributes.addFlashAttribute(MESSAGE, "The notice has been create successfully");
-        return "redirect:/notices";
+        return "redirect:/client/notices";
     }
 
     @GetMapping("/notices/edit/{id}")
@@ -71,7 +77,7 @@ public class NoticeController {
             model.addAttribute("notice", notice);
             return "edit_notice_form";
         } catch (ServiceException e) {
-            return "redirect:/notices";
+            return "edit_notice_form";
         }
     }
 
@@ -86,13 +92,13 @@ public class NoticeController {
             throw new RuntimeException(e);
         }
         redirectAttributes.addFlashAttribute(MESSAGE, "The notice has been saved successfully");
-        return "redirect:/notices";
+        return "redirect:/client/notices";
     }
 
     @GetMapping("notices/delete/{id}")
     public String deleteNotice(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
         noticeService.deleteNotice(id);
         redirectAttributes.addFlashAttribute(MESSAGE, "The notice (id=" + id + ") has been successfully deleted");
-        return "redirect:/notices";
+        return "redirect:/client/notices";
     }
 }

@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notices</title>
+</head>
+<body>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -8,15 +15,11 @@
 </head>
 <body style="background-color: #f0f0f0;">
 <div class="container">
-    <h1 class="text-center">Manage Notices</h1>
-    <div th:if="${message}" class="alert alert-success text-center">
-        [[${message}]]
-    </div>
+    <h1 class="text-center">Notices</h1>
     <div th:switch="${noticeList}">
         <h2 th:case="null" class="text-center mt-3">No Notices Found!</h2>
         <div th:case="*">
             <h2 class="mt-3">Заявки</h2>
-            <p><a class="btn btn-primary" href="/notices/new" style="background-color: #007bff; border-color: #007bff;">Create Notice</a></p>
             <div class="row">
                 <div th:each="notice : ${noticeList}" class="col-md-4 mb-4">
                     <div class="card" style="background-color: #f8f9fa; border: 1px solid #e1e1e1; border-radius: 10px;">
@@ -32,15 +35,16 @@
                                 <strong>Вознаграждение:</strong> <span th:text="${notice.reward}"></span><br>
                                 <strong>Дата-Время публикации:</strong> <span th:text="${notice.publicationDateTime}"></span><br>
                             </p>
-                            <a th:href="@{'/notices/edit/'+${notice.noticeId}}" class="btn btn-primary" style="background-color: #007bff; border-color: #007bff;">Edit</a>
-                            <a th:href="@{'/notices/delete/'+${notice.noticeId}}" class="btn btn-danger" style="background-color: #dc3545; border-color: #dc3545;">Delete</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <a th:href="@{/admin}" class="btn btn-primary" style="background-color: orange; border-color: #007bff;">Back</a>
+        <a th:href="@{/client}" class="btn btn-primary" style="background-color: orange; border-color: #007bff;">Back</a>
     </div>
 </div>
+</body>
+</html>
+
 </body>
 </html>

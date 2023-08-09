@@ -12,4 +12,8 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/error")
+    public String showAuthorizationForm( ) {
+        return "error";
+    }
 }

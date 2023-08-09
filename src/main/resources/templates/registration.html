@@ -3,30 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body>
-<h1>Registration</h1>
-<form action="#" th:action="@{/register}" th:object="${user}" method="post">
-    <div class="border border-secondary rounded">
-        <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Логин:</label>
-            <input class="form-control" th:field="*{login}" type="text" required><br>
-            <label class="col-sm-4 col-form-label">Пароль:</label>
-            <input class="form-control" th:field="*{password}" type="password" required><br>
-            <label class="col-sm-4 col-form-label">Имя:</label>
-            <input class="form-control" th:field="*{name}" type="text" required><br>
-            <label class="col-sm-4 col-form-label">Фамилия:</label>
-            <input class="form-control" th:field="*{surname}" type="text" required><br>
-            <label class="col-sm-4 col-form-label">Телефон:</label>
-            <input class="form-control" th:field="*{phone}" type="text" required><br>
-            <label class="col-sm-4 col-form-label">Email:</label>
-            <input class="form-control" th:field="*{email}" type="email" required><br>
-            <input type="hidden" name="role" value="CLIENT" required><br>
-        </div>
+<body style="background-color: #f0f0f0;">
+<div class="container mt-5">
+    <div class="p-4 rounded shadow-lg" style="background-color: #e1f5fe;">
+        <h1 class="text-center mb-4">Registration</h1>
+        <form th:action="@{/register}" th:object="${user}" method="post">
+            <div class="form-group">
+                <label class="font-weight-bold">Логин:</label>
+                <input class="form-control" th:field="*{login}" type="text" required>
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold">Пароль:</label>
+                <input class="form-control" th:field="*{password}" type="password" required>
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold">Имя:</label>
+                <input class="form-control" th:field="*{name}" type="text" required>
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold">Фамилия:</label>
+                <input class="form-control" th:field="*{surname}" type="text" required>
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold">Телефон:</label>
+                <input class="form-control" th:field="*{phone}" type="text" required>
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold">Email:</label>
+                <input class="form-control" th:field="*{email}" type="email" required>
+            </div>
+            <input type="hidden" name="role" value="CLIENT" required>
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-primary btn-lg">Create</button>
+            </div>
+        </form>
     </div>
-    <div class="text-center">
-        <button type="submit" class="btn btn-primary">Create</button>
-    </div>
-</form>
+</div>
 </body>
 </html>

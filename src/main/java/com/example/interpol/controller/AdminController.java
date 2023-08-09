@@ -49,7 +49,10 @@ public class AdminController {
       return "redirect:/users";
     }
   }
-
+  @GetMapping("/admin")
+  public String showAdminPage() {
+    return "admin_page";
+  }
   @PostMapping("/users/update")
   public String updateUser(User user, RedirectAttributes redirectAttributes) {
     try {
