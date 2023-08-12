@@ -35,7 +35,6 @@ public class SecurityConfig {
               .authoritiesByUsernameQuery("SELECT login, role FROM users WHERE login = ?")
               .passwordEncoder(new BCryptPasswordEncoder());
    }
-
    @Bean
    protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
       http
