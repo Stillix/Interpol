@@ -2,7 +2,7 @@ package com.example.interpol.service;
 
 import com.example.interpol.exception.ServiceException;
 import com.example.interpol.model.User;
-import org.springframework.security.core.userdetails.UserDetails;
+
 
 import java.util.List;
 

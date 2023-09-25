@@ -4,16 +4,16 @@ import com.example.interpol.model.User;
 import com.example.interpol.validator.UserValidator;
 
 public class UserValidatorImpl implements UserValidator {
-//
-//    public static final String LOGIN_REGEX = "^[a-zA-Z0-9]{4,20}$";
-//    public static final String EMAIL_REGEX = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$";
-//    public static final String NAME_REGEX = "^[a-zA-Z]{2,15}$";
-//    public static final String SURNAME_REGEX = "^[a-zA-Z]{2,30}$";
-//    public static final String PHONE_REGEX = "^\\s*\\+?375((25|29|33|44)\\d{7})\\s*$";
-//    public static final String PASSWORD_REGEX = "(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)[A-Za-z\\d]{6,30}";
-//
-//
-//
+
+    public static final String LOGIN_REGEX = "^[a-zA-Z0-9]{4,20}$";
+    public static final String EMAIL_REGEX = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$";
+    public static final String NAME_REGEX = "^[a-zA-Z]{2,15}$";
+    public static final String SURNAME_REGEX = "^[a-zA-Z]{2,30}$";
+    public static final String PHONE_REGEX = "^\\s*\\+?375((25|29|33|44)\\d{7})\\s*$";
+    public static final String PASSWORD_REGEX = "(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)[A-Za-z\\d]{6,30}";
+
+
+
     @Override
     public boolean isValidUser(User user) {
 //        return user.getName() != null && user.getName().matches(NAME_REGEX) &&
